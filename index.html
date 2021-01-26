@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+	<!-- ボタンCSSの参照先 http://www.htmq.com/csskihon/004.shtml -->
+	<style type="text/css">
+                body {
+                 background-color: #4c6cb3;
+                 color: #FFF;
+                }
+                div {
+                  background-color: #FFF;
+                  color: #000000;
+                  margin: 50px;
+                  padding: 5px;
+                  text-align: center;
+                  border: 3px solid #cccccc
+                }
+		.square_btn{
+			display: inline-block;
+			padding: 0.5em 1em;
+			text-decoration: none;
+			background: #668ad8;
+			color: #FFF;
+			border-bottom: solid 4px #627295;
+			border-radius: 3px;
+		}
+		.square_btn:active {
+			-ms-transform: translateY(4px);
+			-webkit-transform: translateY(4px);
+			transform: translateY(4px);
+			border-bottom: none;
+		}
+	</style>
+	<title>けいおんガチャ</title>
+</head>
+<body>
+<div>
+<h1>けいおんガチャ</h1>
+<p>普段絡む4人をピックアップしました</p>
+</div>
+
+<script>
+var no_rare = 0;
+var no_yabu = 0;
+var no_hanyabu = 0;
+var no_srare = 0;
+var no_urare = 0;
+var no_surare = 0;
+var no_all = 0;
+function set_gatcha() {
+	for( var i=0; i<10; i++ ) {
+		var id = ('0000000000' + i).slice(-2);
+		var img = document.getElementById("card"+id); 
+		var number = Math.floor(100*Math.random());
+		if( number < 25 ) {
+			img.src = "rare.png";
+			no_rare++;
+		} else if( number < 50 ) {
+			img.src = "yabu.png";
+			no_yabu++;
+		} else if( number < 75 ) {
+			img.src = "srare.png";
+			no_srare++;
+		} else if( number < 90 ) {
+			img.src = "urare.png";
+			no_urare++;
+		} else if( number < 95 ) {
+			img.src = "hanyabu.png";
+			no_hanyabu++;
+		}  else if( number < 99 ) {
+			img.src = "surare.png";
+			no_surare++;
+		} else {
+                      img.src = "all.png";
+                       no_all++;
+	        } 
+        }
+	var total = no_rare + no_srare + no_urare + no_surare;
+	document.getElementById("price").innerHTML = total*300+"円";
+	document.getElementById("no_rare").innerHTML = no_rare+"枚（確率"+Math.round(no_rare/total*100*100)/100+"％）";
+        document.getElementById("no_yabu").innerHTML = no_yabu+"枚（確率"+Math.round(no_yabu/total*100*100)/100+"％）";
+        document.getElementById("no_hanyabu").innerHTML = no_hanyabu+"枚（確率"+Math.round(no_hanyabu/total*100*100)/100+"％）";
+	document.getElementById("no_srare").innerHTML = no_srare+"枚（確率"+Math.round(no_srare/total*100*100)/100+"％）";
+	document.getElementById("no_urare").innerHTML = no_urare+"枚（確率"+Math.round(no_urare/total*100*100)/100+"％）";
+        document.getElementById("no_surare").innerHTML = no_surare+"枚（確率"+Math.round(no_surare/total*100*100)/100+"％）";
+        document.getElementById("no_all").innerHTML = no_all+"枚（確率"+Math.round(no_all/total*100*100)/100+"％）";
+
+}
+</script>
+
+<table>
+	<tr>
+		<td><img id="card00" src="unknown.png" width="150" height="200"></td>
+		<td><img id="card01" src="unknown.png" width="150" height="200"></td>
+		<td><img id="card02" src="unknown.png" width="150" height="200"></td>
+		<td><img id="card03" src="unknown.png" width="150" height="200"></td>
+		<td><img id="card04" src="unknown.png" width="150" height="200"></td>
+	</tr>
+	<tr>
+		<td><img id="card05" src="unknown.png" width="150" height="200"></td>
+		<td><img id="card06" src="unknown.png" width="150" height="200"></td>
+		<td><img id="card07" src="unknown.png" width="150" height="200"></td>
+		<td><img id="card08" src="unknown.png" width="150" height="200"></td>
+		<td><img id="card09" src="unknown.png" width="150" height="200"></td>
+	</tr>
+</table>
+
+
+<div><a href="#" class="square_btn" onclick="set_gatcha()">ガラガラ( *´艸｀)</a></div>
+
+<dl>
+	<dt>現在の課金額</dt>
+	<dd id="price">0円</dd>
+	<dt>ゲッターズ薮の枚数（設定確率は25％）</dt>
+	<dd id="no_rare">0枚</dd>
+        <dt>ベージスト薮の枚数（設定確率は25％）</dt>
+	<dd id="no_yabu">0枚</dd>
+        <dt>韓流薮の枚数（設定確率は5％）</dt>
+	<dd id="no_hanyabu">0枚</dd>
+	<dt>由井陽斗の枚数（設定確率は25％）</dt>
+	<dd id="no_srare">0枚</dd>
+	<dt>矢田佳暉の枚数（設定確率は15％）</dt>
+	<dd id="no_urare">0枚</dd>
+        <dt>高寺昌悟の枚数（設定確率は4％）</dt>
+        <dd id="no_surare">0枚</dd>
+        <dt>全体の枚数（設定確率は1％）</dt>
+	<dd id="no_all">0枚</dd>
+        
+</dl>
+
+</body>
+</html>
+
